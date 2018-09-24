@@ -19,12 +19,29 @@ module.exports = app =>{
         .get(createUser)
         .post(createUser);
 
-    app.get('/book-list', async (req ,res)=>{
+    app.get('/book-list/:paginationcount?', async (req ,res)=>{
+        let paginationCount = req.params.paginationcount || 0, prev=0, next=0;
+            if(paginationCount>1){
+               prev = parseInt(paginationCount)-1;
+            }
+            next = parseInt(paginationCount)+1;
+            limit = 12;
         let getAllBooks = await api.get('books',{
-            limit : 1
+            limit : limit,
+            offset : parseInt(paginationCount)*limit
         });
-        console.log(getAllBooks.data);
-        res.render('book-grid-wrs.hbs');
+        let renderData = "";
+        if(getAllBooks.status==200){
+           renderData = getAllBooks.data.books
+        }else{
+           renderData = getAllBooks.message
+        }
+        console.log(getAllBooks);
+        let pagination = {
+            'prev': prev,
+            'next': next
+        }
+        res.render('book-grid-wrs.hbs', { data : renderData, pagination });
     })
 
 }
