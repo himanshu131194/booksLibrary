@@ -165,11 +165,9 @@
             <div class="ereaders-pagination">
               <ul class="page-numbers">
                  <li><a class="previous page-numbers" href="/book-list/{{pagination.prev}}"><span aria-label="Next"><i class="icon ereaders-arrow-point-to-right"></i></span></a></li>
-                 {{#each pagination}}
-										 <li><span class="page-numbers current">01</span></li>
-										 <li><a class="page-numbers" href="404.html">02</a></li>
-										 <li><a class="page-numbers" href="404.html">03</a></li>
-										 <li><a class="page-numbers" href="404.html">04</a></li>
+                 {{#each pagination.columnCountsJSON}}
+										 <!-- <li><span class="page-numbers current">01</span></li> -->
+										 <li><a class="page-numbers" href="{{this.url}}">{{this.count}}</a></li>
 								 {{/each}}
                  <li><a class="next page-numbers" href="/book-list/{{pagination.next}}"><span aria-label="Next"><i class="icon ereaders-arrow-point-to-right"></i></span></a></li>
               </ul>
