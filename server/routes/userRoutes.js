@@ -19,20 +19,23 @@ module.exports = app =>{
         .post(createUser);
 
     app.get('/book-list/:paginationcount?', async (req ,res)=>{
-        let paginationCount = req.params.paginationcount || 0, prev=0, next=0;
-        let columnCounts = 6, pageCountStart = 1, pageCountEnd = 6;
+        //PAGINATION LOGIC
+        let paginationCount = req.params.paginationcount || 1, prev=0, next=0;
+        let columnCounts = 6; //pageCountStart = 1, pageCountEnd = 6;
             if(paginationCount>1)
                prev = parseInt(paginationCount)-1;
             next = parseInt(paginationCount)+1;
             let columnCountsJSON = {};
-            if(paginationCount>6){
-               pageCountStart = paginationCount;
-               pageCountEnd = parseInt(paginationCount)+columnCounts;
-            }
+            //if(paginationCount>6){
+               let pageCountStart = paginationCount;
+               let pageCountEnd = parseInt(paginationCount)+columnCounts;
+            //}
             for(let i= pageCountStart; i<=pageCountEnd; i++) {
                  columnCountsJSON[i] = { count: i,  url: '/book-list/'+i }
             }
             limit = 12;
+        //PAGINATION END
+
         let getAllBooks = await api.get('books',{
             limit : limit,
             offset : parseInt(paginationCount)*limit
