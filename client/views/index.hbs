@@ -543,7 +543,7 @@
 
 	</div>
 
-<!-- Modal -->
+<!-- Create Account Modal -->
 <div id="account_popup" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
@@ -555,7 +555,7 @@
       <div class="modal-body">
         <p>
 					<div class="account-contact-form">
-               <form class="" action="index.html" method="post">
+               <form id="create_account_form" class="" action="" method="post">
 								 <div class="">
 									 <input value="Name" onblur="if(this.value == '') { this.value ='Name'; }" onfocus="if(this.value =='Name') { this.value = ''; }" tabindex="0" type="text" name="name">
 								 </div>
@@ -581,19 +581,26 @@
     </div>
   </div>
 </div>
+<!-- End Create Account Modal -->
 
+<script type="text/javascript">
+      // var create_account_form = document.getElementById('create_account_form');
+			//     console.log(create_account_form);
+			//     create_account_form.onsubmit = function(){
+			// 			   console.log(this);
+			// 			   return false;
+			// 		}
+</script>
 
 
 	<!--// Main Content \\-->
 
 	<!--// Footer \\-->
 	<footer id="ereaders-footer" class="ereaders-footer-one">
-
 		<!--// Footer Widget \\-->
 		<div class="ereaders-footer-widget">
 			<div class="container">
 				<div class="row">
-
 					<div class="col-md-12">
 						<div class="ereaders-footer-newslatter">
 							<h2>Subscribe to Our Newsletter</h2>

@@ -4,19 +4,26 @@ const api = require('../api/api');
 module.exports = app =>{
      const createUser = async (req, res)=>{
          if(req.body){
+           let accountDetails = {
+               name : req.body.name,
+               username: req.body.username,
+               email  : req.body.email,
+               password : req.body.password
+           }
+           let signup = await api.post('signup', accountDetails);
+           console.log(signup);
          }
-         let sendJson = {
-             key : "Himanshu"
-         }
-         let signup = await api.signup("shivam", "1234343434");
-         console.log(signup);
-         res.render('index.hbs', sendJson);
+         res.render('index.hbs');
      }
-     app.route('/')
+    app.route('/')
         .get(createUser)
         .post(createUser);
 
-    app.get('/book-list', (req ,res)=>{
+    app.get('/book-list', async (req ,res)=>{
+        let getAllBooks = await api.get('books',{
+            limit : 1
+        });
+        console.log(getAllBooks.data);
         res.render('book-grid-wrs.hbs');
     })
 
